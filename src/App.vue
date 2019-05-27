@@ -228,6 +228,11 @@ label {
   color: #a37c82;
 }
 
+.todo.completed label {
+  text-decoration: line-through;
+  color: #be9ba0;
+}
+
 @media all and (max-width: 640px) {
   * {
     font-size: 18px;
