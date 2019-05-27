@@ -1,66 +1,91 @@
 <template>
   <div>
-  <h1 class="title">Your to-do list:</h1>
-  <md-field>
-    <md-input class="add" v-model="currentTodo" @keyup.enter="addTodo()" placeholder="Add a to-do..."></md-input>
-    <md-button @click="addTodo()" class="md-icon-button addItem">
-    <md-icon>add </md-icon>
-    </md-button>
-  </md-field>  
-     <md-list class="todos">
-        <md-list-item v-for="(todo, index) in todos" :key="todo.id" @dblclick="editTodo(index)" class="todo" :class="{completed: todo.completed}">
+    <h1 class="title">Your to-do list:</h1>
+    <md-field>
+      <md-input
+        class="add"
+        v-model="currentTodo"
+        @keyup.enter="addTodo()"
+        placeholder="Add a to-do..."
+      ></md-input>
+      <md-button @click="addTodo()" class="md-icon-button addItem">
+        <md-icon>add</md-icon>
+      </md-button>
+    </md-field>
+    <md-list class="todos">
+      <md-list-item
+        v-for="(todo, index) in todos"
+        :key="todo.id"
+        @dblclick="editTodo(index)"
+        class="todo"
+        :class="{completed: todo.completed}"
+      >
         <md-checkbox v-model="todo.completed" value="completed">
-        <label v-if="!todo.edit"> {{ todo.label }} </label>
-        <input class="edit" type="text" v-model="todo.label" v-if="todo.edit" v-focus @blur="doneEdit(index)"  @keyup.enter="doneEdit(index)">
+          <label v-if="!todo.edit">{{ todo.label }}</label>
+          <input
+            class="edit"
+            type="text"
+            v-model="todo.label"
+            v-if="todo.edit"
+            v-focus
+            @blur="doneEdit(index)"
+            @keyup.enter="doneEdit(index)"
+          >
         </md-checkbox>
         <md-button class="remove" @click="removeTodo(todo)">X</md-button>
-      </md-list-item> 
+      </md-list-item>
     </md-list>
     <footer>
-    <button class="clear" @click="removeAll()" v-show="todos.length > 0">Clear all</button>
-    <button class="clear" @click="removeCompleted()" v-show="todos.length > 0">Clear completed</button>
+      <button class="clear" @click="removeAll()" v-show="todos.length > 0">Clear all</button>
+      <button class="clear" @click="removeCompleted()" v-show="todos.length > 0">Clear completed</button>
     </footer>
   </div>
 </template>
 
 <script>
- const focus = {
-    inserted(el) {
-      el.focus()
-    },
+const focus = {
+  inserted(el) {
+    el.focus();
   }
+};
 
 export default {
   data() {
     return {
       todos: [],
-      currentTodo: ''
+      currentTodo: ""
     };
   },
   directives: { focus },
   methods: {
     addTodo() {
-      if(this.currentTodo!=='') { this.todos.push({id: this.todos.length, label: this.currentTodo, completed: false, edit: false})
+      if (this.currentTodo !== "") {
+        this.todos.push({
+          id: this.todos.length,
+          label: this.currentTodo,
+          completed: false,
+          edit: false
+        });
       }
-      this.currentTodo = '';
+      this.currentTodo = "";
     },
     removeTodo(todo) {
       var index = this.todos.indexOf(todo);
       this.todos.splice(index, 1);
     },
     editTodo(index) {
-      this.todos[index].edit=true;
+      this.todos[index].edit = true;
     },
-    doneEdit(index){
-      this.todos[index].edit=false;
+    doneEdit(index) {
+      this.todos[index].edit = false;
     },
-    removeAll(){
-      this.todos=[];
+    removeAll() {
+      this.todos = [];
     },
     removeCompleted() {
-     this.todos=this.todos.filter(function (todo) {
-        return !todo.completed
-      })
+      this.todos = this.todos.filter(function(todo) {
+        return !todo.completed;
+      });
     }
   }
 };
@@ -68,132 +93,132 @@ export default {
 
 <style>
 * {
-    font-family: 'Karla', sans-serif;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 1.6;
+  font-family: "Karla", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.6;
 }
 
 body {
-    background-color: #D0EAD5;
-    margin: auto;
-    height: 100%;
+  background-color: #d0ead5;
+  margin: auto;
+  height: 100%;
 }
 
 .clear {
-    background-color: #68A374;
-    color: #D0EAD5;
-    border: none;
-    padding: 5px;
-    border-radius: 3px;
-    width: 48%;
-    white-space: nowrap;
-    font-family: 'Rubik', sans-serif;
-    font-size: 18px;
-    cursor: pointer;
-    margin-top: 3%
+  background-color: #68a374;
+  color: #d0ead5;
+  border: none;
+  padding: 5px;
+  border-radius: 3px;
+  width: 48%;
+  white-space: nowrap;
+  font-family: "Rubik", sans-serif;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 3%;
 }
 
 .clear:hover {
-    background-color: #A37C82;
-    color: #fff;
+  background-color: #a37c82;
+  color: #fff;
 }
 
 div {
-    max-width: 80%;
-    padding: 2% 5% 5% 10%;
-    background-color: white;
-    margin: auto;
-    margin-top: 5%;
+  max-width: 80%;
+  padding: 2% 5% 5% 10%;
+  background-color: white;
+  margin: auto;
+  margin-top: 5%;
 }
 
 :focus {
-    outline: #68A374 auto 5px;
+  outline: #68a374 auto 5px;
 }
 
 footer {
-    max-width: 90%;
-    display: flex;
-    justify-content: space-between;
+  max-width: 90%;
+  display: flex;
+  justify-content: space-between;
 }
 
 h1 {
-    color: #A37C82;
-    font-family: 'Rubik', sans-serif;
-    font-weight: 700;
-    font-size: 46px;
-    text-align: center;
-    width: 90%;
+  color: #a37c82;
+  font-family: "Rubik", sans-serif;
+  font-weight: 700;
+  font-size: 46px;
+  text-align: center;
+  width: 90%;
 }
 
 .md-field {
-    padding: 16px;
-    margin: 0px;
-    background-color: #68A374;
-    text-align: center;
-    max-width: 90%;
-    border-radius: 3px;
+  padding: 16px;
+  margin: 0px;
+  background-color: #68a374;
+  text-align: center;
+  max-width: 90%;
+  border-radius: 3px;
 }
 
 .md-input::-webkit-input-placeholder,
 .addItem {
-    color: #D0EAD5;
-    padding-left: 2%;
+  color: #d0ead5;
+  padding-left: 2%;
 }
 
 .md-input {
-    color: #fff;
+  color: #fff;
 }
 
 .md-list-item {
-    width: 90%;
-    display: inline-block;
-    border: 1px solid #68A374;
-    margin-bottom: 1%;
+  width: 90%;
+  display: inline-block;
+  border: 1px solid #68a374;
+  margin-bottom: 1%;
 }
 
 .md-list-item-container {
-    min-width: 135%;
+  min-width: 135%;
 }
 
 .md-ripple,
 .md-button-content {
-    background: transparent;
-    margin: 0px;
-    padding: 0px;
+  background: transparent;
+  margin: 0px;
+  padding: 0px;
 }
 
 .remove {
-    position: relative;
-    color: #D0EAD5;
+  position: relative;
+  color: #d0ead5;
 }
 
 .remove:hover {
-    color: #A37C82;
+  color: #a37c82;
 }
 
 @media all and (max-width: 610px) {
-    * {
-        font-size: 18px;
-    }
+  * {
+    font-size: 18px;
+  }
 
-    .clear {
-        width: 100%;
-        font-size: 16px;
-    }
+  .clear {
+    width: 100%;
+    font-size: 16px;
+  }
 
-    footer {
-        flex-direction: column;
-    }
+  footer {
+    flex-direction: column;
+  }
 
-    h1 {
-        font-size: 30px;
-    }
+  h1 {
+    font-size: 30px;
+  }
 
-    .md-field,
-    div,
-    footer {
-        min-width: 95%;
-    }
+  .md-field,
+  div,
+  footer {
+    min-width: 95%;
+  }
 }
 </style>
