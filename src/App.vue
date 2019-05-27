@@ -20,7 +20,7 @@
         class="todo"
         :class="{completed: todo.completed}"
       >
-        <md-checkbox v-model="todo.completed" value="completed">
+        <md-checkbox v-model="todo.completed" @change="completeTodo(todo)">
           <label v-if="!todo.edit">{{ todo.label }}</label>
           <input
             class="edit"
@@ -36,8 +36,8 @@
       </md-list-item>
     </md-list>
     <footer>
-      <button class="clear" @click="removeAll()" v-show="todos.length > 0">Clear all</button>
-      <button class="clear" @click="removeCompleted()" v-show="todos.length > 0">Clear completed</button>
+      <md-button class="clear" @click="removeAll()" v-show="todos.length > 0">Clear all</md-button>
+      <md-button class="clear" @click="removeCompleted()" v-show="todos.length > 0">Clear completed</md-button>
     </footer>
   </div>
 </template>
@@ -106,22 +106,18 @@ body {
 }
 
 .clear {
-  background-color: #68a374;
   color: #d0ead5;
-  border: none;
-  padding: 5px;
   border-radius: 3px;
-  width: 48%;
+  width: 50%;
   white-space: nowrap;
   font-family: "Rubik", sans-serif;
   font-size: 18px;
   cursor: pointer;
-  margin-top: 3%;
 }
 
 .clear:hover {
-  background-color: #a37c82;
-  color: #fff;
+  background-color: #d0ead5;
+  color: #68a374;
 }
 
 div {
@@ -140,9 +136,12 @@ div {
 }
 
 footer {
-  max-width: 90%;
+  max-width: 95%;
   display: flex;
+  padding: 5px;
   justify-content: space-between;
+  background-color: #68a374;
+  border-radius: 3px;
 }
 
 h1 {
@@ -151,7 +150,7 @@ h1 {
   font-weight: 700;
   font-size: 46px;
   text-align: center;
-  width: 90%;
+  width: 95%;
 }
 
 label {
@@ -159,13 +158,9 @@ label {
   top: -20%;
 }
 
-.md-button-clean {
-  max-width: 240px;
-  word-wrap: break-word;
-}
-
 .md-checkbox,
-.md-checkbox-container {
+.md-checkbox-container,
+.md-list-item-content > .md-checkbox:first-child {
   margin: 0px;
   padding: 0px;
 }
@@ -186,7 +181,7 @@ label {
   margin: 0px;
   background-color: #68a374;
   text-align: center;
-  max-width: 90%;
+  max-width: 95%;
   border-radius: 3px;
 }
 
@@ -201,7 +196,7 @@ label {
 }
 
 .md-list-item {
-  width: 90%;
+  width: 95%;
   display: inline-block;
   border: 1px solid #68a374;
   margin-bottom: 1%;
@@ -233,29 +228,37 @@ label {
   color: #be9ba0;
 }
 
-@media all and (max-width: 640px) {
+@media all and (max-width: 680px) {
   * {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .clear {
     width: 100%;
-    font-size: 16px;
   }
 
+  div {
+    padding: 4%;
+    padding-bottom: 7%;
+    min-width: 97%;
+  }
   footer {
     flex-direction: column;
+    padding: 0px;
   }
 
   h1 {
     font-size: 30px;
   }
 
+  .md-button {
+    margin: 0px;
+  }
+
   .md-field,
   .md-list-item,
-  div,
   footer {
-    min-width: 95%;
+    min-width: 100%;
   }
 
   .md-input.add {
