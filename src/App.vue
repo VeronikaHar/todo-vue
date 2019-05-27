@@ -35,9 +35,9 @@
         <md-button class="remove" @click="removeTodo(todo)">X</md-button>
       </md-list-item>
     </md-list>
-    <footer>
-      <md-button class="clear" @click="removeAll()" v-show="todos.length > 0">Clear all</md-button>
-      <md-button class="clear" @click="removeCompleted()" v-show="todos.length > 0">Clear completed</md-button>
+    <footer v-show="todos.length > 0">
+      <md-button class="clear" @click="removeAll()">Clear all</md-button>
+      <md-button class="clear" @click="removeCompleted()">Clear completed</md-button>
     </footer>
   </div>
 </template>
