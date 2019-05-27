@@ -2,15 +2,15 @@
   <div>
     <h1 class="title">Your to-do list:</h1>
     <md-field>
+      <md-button @click="addTodo()" class="md-icon-button addItem">
+        <md-icon>add</md-icon>
+      </md-button>
       <md-input
         class="add"
         v-model="currentTodo"
         @keyup.enter="addTodo()"
         placeholder="Add a to-do..."
       ></md-input>
-      <md-button @click="addTodo()" class="md-icon-button addItem">
-        <md-icon>add</md-icon>
-      </md-button>
     </md-field>
     <md-list class="todos">
       <md-list-item
@@ -133,7 +133,10 @@ div {
 }
 
 :focus {
-  outline: #68a374 auto 5px;
+  outline: #a37c82 auto 5px;
+  min-width: 100%;
+  bottom: -45%;
+  position: absolute;
 }
 
 footer {
@@ -149,6 +152,33 @@ h1 {
   font-size: 46px;
   text-align: center;
   width: 90%;
+}
+
+label {
+  position: absolute;
+  top: -20%;
+}
+
+.md-button-clean {
+  max-width: 240px;
+  word-wrap: break-word;
+}
+
+.md-checkbox,
+.md-checkbox-container {
+  margin: 0px;
+  padding: 0px;
+}
+
+.md-checkbox-container::after {
+  border: 2px solid #a37c82;
+}
+
+.md-input.add {
+  position: absolute;
+  top: 30%;
+  left: 15%;
+  font-size: 18px;
 }
 
 .md-field {
@@ -177,27 +207,28 @@ h1 {
   margin-bottom: 1%;
 }
 
-.md-list-item-container {
-  min-width: 135%;
+.md-list-item-fake-button.md-list-item-container.md-button-clean {
+  max-width: 100%;
 }
 
+.md-list-item-content.md-ripple,
 .md-ripple,
 .md-button-content {
   background: transparent;
   margin: 0px;
   padding: 0px;
+  min-width: 100%;
 }
 
 .remove {
-  position: relative;
-  color: #d0ead5;
+  color: #b9dabf;
 }
 
 .remove:hover {
   color: #a37c82;
 }
 
-@media all and (max-width: 610px) {
+@media all and (max-width: 640px) {
   * {
     font-size: 18px;
   }
@@ -216,9 +247,19 @@ h1 {
   }
 
   .md-field,
+  .md-list-item,
   div,
   footer {
     min-width: 95%;
+  }
+
+  .md-input.add {
+    left: 20%;
+  }
+
+  .remove {
+    position: absolute;
+    left: -25%;
   }
 }
 </style>
