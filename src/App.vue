@@ -157,6 +157,11 @@ label {
   position: absolute;
   top: -20%;
 }
+.md-button:not([disabled]).md-focused:before,
+.md-button:not([disabled]):active:before,
+.md-button:not([disabled]):hover:before {
+  background-color: transparent !important;
+}
 
 .md-checkbox,
 .md-checkbox-container,
@@ -165,8 +170,17 @@ label {
   padding: 0px;
 }
 
-.md-checkbox-container::after {
-  border: 2px solid #a37c82;
+.md-checkbox .md-checkbox-container {
+  border: 0.7px solid #a37c82 !important;
+  margin-left: 12px;
+}
+
+.md-checkbox.md-checked .md-checkbox-container:after {
+  border-color: #a37c82;
+}
+
+.md-checkbox.md-theme-default {
+  background: transparent;
 }
 
 .md-input.add {
@@ -176,13 +190,12 @@ label {
   font-size: 18px;
 }
 
-.md-field {
-  padding: 16px;
-  margin: 0px;
+.md-field.md-theme-default.md-has-placeholder {
   background-color: #68a374;
-  text-align: center;
   max-width: 95%;
   border-radius: 3px;
+  margin-bottom: 1.5%;
+  padding: 12px;
 }
 
 .md-input::-webkit-input-placeholder,
@@ -267,7 +280,7 @@ label {
 
   .remove {
     position: absolute;
-    left: -25%;
+    right: 28%;
   }
 }
 </style>
