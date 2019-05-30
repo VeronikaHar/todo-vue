@@ -20,7 +20,7 @@
         class="todo"
         :class="{completed: todo.completed}"
       >
-        <md-checkbox v-model="todo.completed" @change="completeTodo(todo)">
+        <md-checkbox v-model="todo.completed" value="todo.completed" @change="completeTodo(todo)">
           <label v-if="!todo.edit">{{ todo.label }}</label>
           <input
             class="edit"
@@ -69,15 +69,23 @@ export default {
       }
       this.currentTodo = "";
     },
-    removeTodo(todo) {
-      var index = this.todos.indexOf(todo);
-      this.todos.splice(index, 1);
+    completeTodo(todo) {
+      if (todo.completed === true) {
+        todo.completed = false;
+      }
+      if (todo.completed === false) {
+        todo.completed = true;
+      }
     },
     editTodo(index) {
       this.todos[index].edit = true;
     },
     doneEdit(index) {
       this.todos[index].edit = false;
+    },
+    removeTodo(todo) {
+      var index = this.todos.indexOf(todo);
+      this.todos.splice(index, 1);
     },
     removeAll() {
       this.todos = [];
