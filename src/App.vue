@@ -136,7 +136,7 @@ div {
   margin-top: 5%;
 }
 
-:focus {
+input:focus {
   outline: #a37c82 auto 5px;
   min-width: 100%;
   bottom: -45%;
