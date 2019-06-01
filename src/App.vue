@@ -228,6 +228,7 @@ label {
 }
 
 .md-list-item-content.md-ripple,
+.md-button .md-ripple,
 .md-ripple,
 .md-button-content {
   background: transparent;
