@@ -168,7 +168,7 @@ label {
 .md-button:not([disabled]).md-focused:before,
 .md-button:not([disabled]):active:before,
 .md-button:not([disabled]):hover:before {
-  background-color: transparent !important;
+  background-color: transparent;
 }
 
 .md-checkbox,
@@ -179,7 +179,7 @@ label {
 }
 
 .md-checkbox .md-checkbox-container {
-  border: 0.7px solid #a37c82 !important;
+  border: 0.7px solid #a37c82;
   margin-left: 12px;
 }
 
@@ -228,11 +228,12 @@ label {
 }
 
 .md-list-item-content.md-ripple,
+.md-button .md-ripple,
 .md-ripple,
 .md-button-content {
   background: transparent;
   margin: 0px;
-  padding: 0px !important;
+  padding: 0px;
   min-width: 100%;
 }
 
