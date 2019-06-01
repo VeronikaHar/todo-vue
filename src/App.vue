@@ -228,12 +228,11 @@ label {
 }
 
 .md-list-item-content.md-ripple,
-.md-button .md-ripple,
 .md-ripple,
 .md-button-content {
   background: transparent;
   margin: 0px;
-  padding: 0px;
+  padding: 0px !important;
   min-width: 100%;
 }
 
