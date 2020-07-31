@@ -146,10 +146,14 @@ input:focus {
 footer {
   max-width: 95%;
   display: flex;
-  padding: 5px;
   justify-content: space-between;
   background-color: #68a374;
   border-radius: 3px;
+}
+
+footer .md-button {
+  height: 50px;
+  margin: -0.2px;
 }
 
 h1 {
